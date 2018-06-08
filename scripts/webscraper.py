@@ -2,13 +2,12 @@ from bs4 import BeautifulSoup
 
 import requests
 
-url = input("Enter a website to extract the URL's from: ")
+url = input("Enter a website to extract the emails from: ")
 
-r = requests.get("https://" + url)
+data = requests.get("https://" + url)
 
-data = r.text
 
-soup = BeautifulSoup(data, "html.parser")
+soup = BeautifulSoup(data.text, "html.parser")
 
 file = open("../data/emails.txt", "w")
 
