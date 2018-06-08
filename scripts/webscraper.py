@@ -2,9 +2,9 @@ from bs4 import BeautifulSoup
 
 import requests
 
-#url = input("Enter a website to extract the URL's from: ")
+url = input("Enter a website to extract the URL's from: ")
 
-r  = requests.get("http://civitas-software.com/")
+r = requests.get("http://" + url)
 
 data = r.text
 
