@@ -10,10 +10,14 @@ data = r.text
 
 soup = BeautifulSoup(data, "html.parser")
 
+file = open("../data/emails.txt", "w")
+
 for email in soup.select('a[href^=mailto]'):
     emailString = email.get('href')
+    strippedEmail = emailString.replace("mailto:", "")
+    file.write(strippedEmail + "\n")
 
-    print(emailString.replace("mailto:", ""))
+    print(strippedEmail)
 
 
-
+file.close()
