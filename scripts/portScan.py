@@ -1,10 +1,6 @@
 import socket
-import subprocess
 import sys
 from datetime import datetime
-
-
-# subprocess.call("clear", shell=True)
 
 remoteServer = input("Enter a remote host to scan: ")
 remoteServerIP = socket.gethostbyname(remoteServer)
