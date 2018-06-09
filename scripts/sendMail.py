@@ -6,8 +6,8 @@ from data.emailCreds import *
 msg = MIMEMultipart("alternative")
 msg["Subject"] = "Service update"
 msg["From"] = getEmail()
-msg["To"] = ", ".join(open("../data/dummyEmails"))
-# msg["To"] = "soer8617@stud.kea.dk" #Only for testing. The line above is the one to be used
+#msg["To"] = ", ".join(open("../data/dummyEmails"))
+msg["To"] = "soer8617@stud.kea.dk" #Only for testing. The line above is the one to be used
 msg.preamble = "Service update"
 
 html = """\
@@ -22,16 +22,18 @@ html = """\
 </html>
 """
 
-msg.attach(html)
+string_text = "Søren er en luder"
 
-# try:
-server = smtplib.SMTP("smtp.gmail.com", 587)
-server.ehlo()
-server.starttls()
-server.login(getEmail(), getPass())
-server.sendmail(getEmail(), msg.as_string())
-server.quit()
-    #print("Succeeded in sending mail.")
+msg.attach(MIMEText(string_text))
 
-# except:
-    # print("Failed to send mail")
+try:
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.ehlo()
+    server.starttls()
+    server.login(getEmail(), getPass())
+    server.sendmail('no-reply@gofuckyourself.com', msg["To"], msg.as_string())
+    server.quit()
+    print("Succeeded in sending mail.")
+
+except:
+    print("Failed to send mail")
