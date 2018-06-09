@@ -24,14 +24,14 @@ html = """\
 
 msg.attach(html)
 
-try:
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    server.ehlo()
-    server.starttls()
-    server.login(getEmail(), getPass())
-    server.sendmail(getEmail(), msg.as_string())
-    server.quit()
-    print("Succeeded in sending mail.")
+# try:
+server = smtplib.SMTP("smtp.gmail.com", 587)
+server.ehlo()
+server.starttls()
+server.login(getEmail(), getPass())
+server.sendmail(getEmail(), msg.as_string())
+server.quit()
+    #print("Succeeded in sending mail.")
 
-except:
-    print("Failed to send mail")
+# except:
+    # print("Failed to send mail")
