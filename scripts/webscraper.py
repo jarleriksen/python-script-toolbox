@@ -8,7 +8,7 @@ def scraper():
     data = requests.get("https://" + url)
     soup = BeautifulSoup(data.text, "html.parser")
     # Had to use absolute path when calling from another file
-    file = open("/Users/jarl/Documents/Projects/python-script-toolbox/data/emails.txt", "w")
+    file = open("../data/emails.txt", "w")
 
     for email in soup.select('a[href^=mailto]'):
         emailString = email.get('href')

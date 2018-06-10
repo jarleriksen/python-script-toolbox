@@ -5,7 +5,7 @@ import hashlib
 
 def dictionary():
     hash = input("Enter your hash: ")
-    passwords = "/Users/jarl/Documents/Projects/python-script-toolbox/data/rockyou.txt"
+    passwords = "../data/rockyou.txt"
 
     try:
         with open(passwords) as password:

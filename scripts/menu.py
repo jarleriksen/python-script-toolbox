@@ -47,3 +47,4 @@ def printMenu():
         print("\n\n\n\n")
         recursiveCall()
 
+printMenu()
