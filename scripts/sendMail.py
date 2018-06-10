@@ -17,7 +17,7 @@ html = """\
         <p>We have recently detected unnatural activity from your LinkedIn profile.</p>
         <p>We need you to prove you are the owner, so we can see if any other mismatching</p>
         <p>IP's have tried to or have had access to your account.</p>
-        Login here to verify you are the owner: <a href="https://www.sneakytime.com/rr/">LinkedIn.com</a>
+        Login here to verify you are the owner: <a href="https://www.sneakytime.com/rr/">www.LinkedIn.com</a>
     </body>
 </html>
 """
