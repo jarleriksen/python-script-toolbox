@@ -3,11 +3,10 @@ import hashlib
 # Leaked pastebin of random accounts
 # https://pastebin.com/Rdw5F4Qu
 
-hash = input("Enter your hash: ")
-passwords = "../data/rockyou.txt"
+def dictionary():
+    hash = input("Enter your hash: ")
+    passwords = "/Users/jarl/Documents/Projects/python-script-toolbox/data/rockyou.txt"
 
-
-def main():
     try:
         with open(passwords) as password:
             for line in password:
@@ -17,7 +16,4 @@ def main():
                     return ""
     except UnicodeDecodeError:
         print("Failed to crack the password.")
-
-
-main()
 
