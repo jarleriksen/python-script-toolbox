@@ -4,10 +4,11 @@ from email.mime.multipart import MIMEMultipart
 from data.emailCreds import *
 
 msg = MIMEMultipart("alternative")
+recipients = "".join(open("../data/dummyEmails"))
 msg["Subject"] = "Service update"
 msg["From"] = getEmail()
-#msg["To"] = ", ".join(open("../data/dummyEmails"))
-msg["To"] = "soer8617@stud.kea.dk" #Only for testing. The line above is the one to be used
+msg["To"] = recipients
+# msg["To"] = "soer8617@stud.kea.dk" #Only for testing. The line above is the one to be used
 msg.preamble = "Service update"
 
 html = """\
@@ -17,21 +18,22 @@ html = """\
         <p>We have recently detected unnatural activity from your LinkedIn profile.</p>
         <p>We need you to prove you are the owner, so we can see if any other mismatching</p>
         <p>IP's have tried to or have had access to your account.</p>
-        Login here to verify you are the owner: <a href="https://www.sneakytime.com/rr/">LinkedIn.com</a>
+        Login here to verify you are the owner: <a href="https://www.sneakytime.com/rr/">www.LinkedIn.com</a>
     </body>
 </html>
 """
 
-string_text = "Søren er en luder"
+# string_text = "Testing message"
 
-msg.attach(MIMEText(string_text))
+msg.attach(MIMEText(html, "html"))
 
 try:
+    print(msg["To"])
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.ehlo()
     server.starttls()
     server.login(getEmail(), getPass())
-    server.sendmail('no-reply@gofuckyourself.com', msg["To"], msg.as_string())
+    server.sendmail(getEmail(), recipients.split(), msg.as_string())
     server.quit()
     print("Succeeded in sending mail.")
 
