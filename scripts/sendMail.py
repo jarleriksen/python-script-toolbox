@@ -4,9 +4,10 @@ from email.mime.multipart import MIMEMultipart
 from data.emailCreds import *
 
 msg = MIMEMultipart("alternative")
+recipients = "".join(open("../data/dummyEmails"))
 msg["Subject"] = "Service update"
 msg["From"] = getEmail()
-msg["To"] = "".join(open("../data/dummyEmails").readlines())
+msg["To"] = recipients
 # msg["To"] = "soer8617@stud.kea.dk" #Only for testing. The line above is the one to be used
 msg.preamble = "Service update"
 
@@ -27,11 +28,12 @@ html = """\
 msg.attach(MIMEText(html, "html"))
 
 try:
+    print(msg["To"])
     server = smtplib.SMTP("smtp.gmail.com", 587)
     server.ehlo()
     server.starttls()
     server.login(getEmail(), getPass())
-    server.sendmail(getEmail(), msg["To"], msg.as_string())
+    server.sendmail(getEmail(), recipients.split(), msg.as_string())
     server.quit()
     print("Succeeded in sending mail.")
 
