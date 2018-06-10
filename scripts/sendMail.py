@@ -6,7 +6,7 @@ from data.emailCreds import *
 def sendMail():
 
     msg = MIMEMultipart("alternative")
-    recipients = "".join(open("/Users/jarl/Documents/Projects/python-script-toolbox/data/dummyEmails"))
+    recipients = "".join(open("../data/dummyEmails"))
     msg["Subject"] = "Service update"
     msg["From"] = getEmail()
     msg["To"] = recipients
