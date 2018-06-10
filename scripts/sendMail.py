@@ -6,7 +6,7 @@ from data.emailCreds import *
 msg = MIMEMultipart("alternative")
 msg["Subject"] = "Service update"
 msg["From"] = getEmail()
-msg["To"] = ", ".join(open("../data/dummyEmails").readlines())
+msg["To"] = "".join(open("../data/dummyEmails").readlines())
 # msg["To"] = "soer8617@stud.kea.dk" #Only for testing. The line above is the one to be used
 msg.preamble = "Service update"
 
@@ -24,7 +24,7 @@ html = """\
 
 # string_text = "Testing message"
 
-msg.attach(MIMEText(html))
+msg.attach(MIMEText(html, "html"))
 
 try:
     server = smtplib.SMTP("smtp.gmail.com", 587)
