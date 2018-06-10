@@ -1,22 +1,20 @@
 from bs4 import BeautifulSoup
-
 import requests
 
-url = input("Enter a website to extract the emails from: ")
 
-data = requests.get("https://" + url)
+def scraper():
 
+    url = input("Enter a website to extract the emails from: ")
+    data = requests.get("https://" + url)
+    soup = BeautifulSoup(data.text, "html.parser")
+    # Had to use absolute path when calling from another file
+    file = open("/Users/jarl/Documents/Projects/python-script-toolbox/data/emails.txt", "w")
 
-soup = BeautifulSoup(data.text, "html.parser")
+    for email in soup.select('a[href^=mailto]'):
+        emailString = email.get('href')
+        strippedEmail = emailString.replace("mailto:", "")
+        file.write(strippedEmail + "\n")
 
-file = open("../data/emails.txt", "w")
+        print(strippedEmail)
 
-for email in soup.select('a[href^=mailto]'):
-    emailString = email.get('href')
-    strippedEmail = emailString.replace("mailto:", "")
-    file.write(strippedEmail + "\n")
-
-    print(strippedEmail)
-
-
-file.close()
+    file.close()

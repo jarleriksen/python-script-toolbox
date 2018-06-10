@@ -1,4 +1,8 @@
 import sys
+from scripts.webscraper import scraper
+from scripts.dictionary import dictionary
+from scripts.sendMail import sendMail
+from scripts.portScan import scanner
 
 print("-------------------------------")
 print("Welcome to the ultimate hacking")
@@ -19,24 +23,20 @@ def printMenu():
     operation = input(">> ")
 
     if operation == "1":
-        print("webscraper call here")
         # webscraper
-        pass
+        scraper()
 
     elif operation == "2":
-        print("portscan call here")
         # portscan
-        pass
+        scanner()
 
     elif operation == "3":
-        print("send mail call here")
         # send mail
-        pass
+        sendMail()
 
     elif operation == "4":
-        print("dict attack call here")
         # dict attack
-        pass
+        dictionary()
 
     elif operation == "0":
         sys.exit("Program stopped by user")
